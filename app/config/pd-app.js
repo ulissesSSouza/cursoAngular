@@ -1,1 +1,10 @@
-angular.module('pdApp', ['ngMessages','toastr','ngAnimate']);
+angular.module('pdApp',
+    [
+        'ngMessages',
+        'toastr',
+        'ngAnimate',
+        'ui.grid',
+        'ngMaterial',
+        'ui.router',
+        'oc.lazyLoad'
+    ]);

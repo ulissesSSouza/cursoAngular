@@ -1,0 +1,74 @@
+<div ng-controller="CadastroBairroController">
+    <form name="bairroForm" novalidate>
+
+        <div class="panel panel-success">
+
+            <div class="panel-heading">
+                <i class="fa fa-edit"></i>
+                Cadastro de Bairro
+            </div>
+
+            <div class="panel-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+
+                            <md-input-container>
+                                <label>Nome do Bairro</label>
+                                <input ng-model="entidade.nomeBairro"
+                                       ng-required="true"
+                                       ng-minlength="3"
+                                       ng-maxlength="20"
+                                       name="nomeBairro"
+                                       autofocus
+                                       id="nomeBairro">
+                            </md-input-container>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <md-input-container>
+                                <label>Cidade</label>
+                                <input ng-model="entidade.cidadeBairro"
+                                       ng-required="true"
+                                       name="cidadeBairro">
+                            </md-input-container>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <md-input-container>
+                                <label>Estado</label>
+                                <input ng-model="entidade.estadoBairro"
+                                       ng-required="true"
+                                       name="estadoBairro">
+                            </md-input-container>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div ui-grid="gridOptions">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <button class="btn btn-primary navbar-btn" ng-click="salvar()">
+                    <i class="fa fa-floppy-o"></i>
+                    Salvar
+                </button>
+               <button class="btn btn-warning navbar-btn" ng-click="limpar()">Limpar</button>
+            </div>
+        </div>
+    </form>
+</div>
