@@ -1,17 +1,27 @@
 angular.module('pdApp')
-    .controller('CadastroBairroController', CadastroBairroController);
+    .controller('CadastroCarroController', CadastroCarroController);
 
-CadastroBairroController.$inject = ['$scope', 'AlertService'];
+CadastroCarroController.$inject = ['$scope', 'AlertService','$rootScope','$state'];
 
-function CadastroBairroController($scope, AlertService) {
+function CadastroCarroController($scope, AlertService,$rootScope,$state) {
+    var index = 0;
+
     $scope.entidade = {};
-    $scope.listaBairros = [];
-
 
     $scope.salvar = salvar;
     $scope.limpar = limpar;
     $scope.excluir = excluir;
     $scope.editar = editar;
+    $scope.visualizar = visualizar;
+
+    iniciar();
+
+    function iniciar(){
+        if(!$rootScope.listaBairros){
+            $rootScope.listaBairros = [];
+        }
+        $scope.listaBairros = $rootScope.listaBairros;
+    }
 
     $scope.gridOptions = {
         columnDefs: [
@@ -46,7 +56,18 @@ function CadastroBairroController($scope, AlertService) {
             AlertService.error('Formulário inválido');
             return;
         }
-        $scope.listaBairros.push($scope.entidade);
+
+        if($scope.entidade.id == null) {
+            $scope.entidade.id = index++;
+            $scope.listaBairros.push($scope.entidade);
+        }
+        else {
+            for(i in $scope.listaBairros) {
+                if($scope.listaBairros[i].id == $scope.entidade.id) {
+                    $scope.listaBairros[i] = $scope.entidade;
+                }
+            }
+        }
         AlertService.success('Registro salvo com sucesso');
         limpar();
 
@@ -65,8 +86,12 @@ function CadastroBairroController($scope, AlertService) {
     }
 
     function editar(linha) {
-        var index = $scope.listaBairros.indexOf(linha);
+        $scope.entidade = angular.copy(linha);
+    }
 
+    function visualizar(linha) {
+        $rootScope.entidade = angular.copy(linha);
+        $state.go('visualizarBairro');
     }
 
 
