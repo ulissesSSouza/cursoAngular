@@ -1,9 +1,9 @@
 angular.module('pdApp')
-    .controller('CadastroCarroController', CadastroCarroController);
+    .controller('CadastroBairroController', CadastroBairroController);
 
-CadastroCarroController.$inject = ['$scope', 'AlertService','$rootScope','$state'];
+CadastroBairroController.$inject = ['$scope', 'AlertService','$rootScope','$state'];
 
-function CadastroCarroController($scope, AlertService,$rootScope,$state) {
+function CadastroBairroController($scope, AlertService,$rootScope,$state) {
     var index = 0;
 
     $scope.entidade = {};
